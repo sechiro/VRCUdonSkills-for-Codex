@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "VRC Udon Networking Rules"
+  short_description: "同期・Ownership・Late Joiner の仕様を固定する"
+  default_prompt: "Use $vrc-udon-networking-rules to define project-owned VRChat UdonSharp networking rules for synced state, ownership, network events, late joiners, and restoration order."

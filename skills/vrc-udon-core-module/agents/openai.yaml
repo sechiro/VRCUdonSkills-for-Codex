@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "VRC Udon Core Module"
+  short_description: "Builder First な UdonSharp モジュール構造を作る"
+  default_prompt: "Use $vrc-udon-core-module to design a reusable VRChat UdonSharp module with builder-first structure, runtime/editor separation, and clear module boundaries."

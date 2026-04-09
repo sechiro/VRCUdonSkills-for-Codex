@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "VRC Udon Heavy Runtime"
+  short_description: "重い runtime と replay/rebuild を分割設計する"
+  default_prompt: "Use $vrc-udon-heavy-runtime to design a VRChat UdonSharp runtime that handles replay, reset, rebuild, or batch processing without assuming everything finishes in one frame."

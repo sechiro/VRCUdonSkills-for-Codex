@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "VRC Udon Project Docs"
+  short_description: "project-owned 文書と環境再現土台をそろえる"
+  default_prompt: "Use $vrc-udon-project-docs to add project-owned documents, environment setup guides, official reference maps, and reusable Editor/document templates to a VRChat UdonSharp project."

@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "VRC Udon Data Lists"
+  short_description: "DataList を明示指定時だけ使う"
+  default_prompt: "Use $vrc-udon-data-lists only when the user explicitly requests DataList or Data Containers, or when an existing VRChat UdonSharp project already depends on them."

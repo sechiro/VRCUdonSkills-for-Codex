@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Edit Stability Windows"
+  short_description: "Windows での文字化けと編集失敗を避ける"
+  default_prompt: "Use $codex-edit-stability-windows to edit files safely on Windows when apply_patch failures, PowerShell encoding issues, BOM problems, or mojibake are likely."

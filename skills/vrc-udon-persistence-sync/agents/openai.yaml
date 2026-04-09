@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "VRC Udon Persistence Sync"
+  short_description: "保存方式と同期方式の選択を整理する"
+  default_prompt: "Use $vrc-udon-persistence-sync to choose between local state, synced state, Player Data, Player Object, and persistence for a VRChat UdonSharp system."

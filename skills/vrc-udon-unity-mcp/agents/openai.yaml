@@ -1,0 +1,4 @@
+interface:
+  display_name: "VRC Udon Unity MCP"
+  short_description: "Unity MCP を Editor 支援として扱う"
+  default_prompt: "Use $vrc-udon-unity-mcp when a VRChat UdonSharp project on Unity 2022.3.22f1 uses CoplayDev unity-mcp for Editor-side scene inspection, builder support, and editor automation without making it a runtime dependency."

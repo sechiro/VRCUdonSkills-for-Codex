@@ -1,0 +1,7 @@
+﻿interface:
+  display_name: "VS Code File Links"
+  short_description: "VS Code 向けのファイル参照形式を統一する"
+  default_prompt: "Use $vscode-file-links to format file references for this VS Code Codex session with inline-code @ absolute paths and stable line references."
+
+policy:
+  allow_implicit_invocation: true

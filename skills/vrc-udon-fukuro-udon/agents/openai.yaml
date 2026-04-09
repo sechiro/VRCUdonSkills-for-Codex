@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "VRC Udon Fukuro Udon"
+  short_description: "Fukuro Udon 導入時の既定ルールを適用する"
+  default_prompt: "Use $vrc-udon-fukuro-udon only when a VRChat UdonSharp project already includes Fukuro Udon and should prefer Manual Sync over VRCObjectSync plus PickupPlatformOverride defaults."

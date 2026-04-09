@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "VRC Udon UI Menu"
+  short_description: "ワールド空間 UI と操作導線を整理する"
+  default_prompt: "Use $vrc-udon-ui-menu to design a VRChat UdonSharp world-space or handheld UI with clear page navigation, pickup interaction rules, and desktop/VR input handling."

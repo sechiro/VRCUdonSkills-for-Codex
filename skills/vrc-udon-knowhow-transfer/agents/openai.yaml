@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "VRC Udon Knowhow Transfer"
+  short_description: "import/export による知見受け渡し運用を整理する"
+  default_prompt: "Use $vrc-udon-knowhow-transfer only when a project explicitly uses import and export folders to move VRChat UdonSharp know-how outside the skill system."
