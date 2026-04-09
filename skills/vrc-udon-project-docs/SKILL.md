@@ -1,4 +1,4 @@
-﻿---
+---
 name: vrc-udon-project-docs
 description: 外部の VRChat UdonSharp プロジェクトに project-owned な AGENTS.md、README、SYSTEM_SPEC、SCENE_OBJECT_SPEC、ENVIRONMENT_SETUP、OFFICIAL_REFERENCE_MAP を配布可能な形でそろえるときに使う。実装前の文書土台、環境再現用の文書セット、U# Program Asset 自動生成用の Editor テンプレート、必要なら Unity MCP 用 `.mcp.json` テンプレートを作りたい場合に使う。モジュール構造そのものは `vrc-udon-core-module` に分ける。
 ---

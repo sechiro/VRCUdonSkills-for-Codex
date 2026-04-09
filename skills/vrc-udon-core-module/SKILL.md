@@ -1,4 +1,4 @@
-﻿---
+---
 name: vrc-udon-core-module
 description: VRChat UdonSharp の再利用モジュールを Builder First で立ち上げるときに使う。Runtime と Editor の責務分離、project-owned なドキュメント整備、シーン生成前提の構成、外部プロジェクトへ持ち出せる基本骨格が必要な場合に使う。文書雛形の配布そのものは `vrc-udon-project-docs`、ネットワーク仕様の固定は `vrc-udon-networking-rules` に分ける。
 ---

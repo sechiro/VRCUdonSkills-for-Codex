@@ -1,4 +1,4 @@
-﻿---
+---
 name: vrc-udon-ui-menu
 description: VRChat UdonSharp でワールド空間 UI、ページ切り替えメニュー、手持ち UI、Pickup と連動する操作導線を設計・実装するときに使う。手持ち情報端末 UI、メニュー遷移、閉じる戻る導線、Desktop / VR 両対応の入力整理が必要な場合に使う。ネットワーク仕様そのものは `vrc-udon-networking-rules` に分ける。
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 name: vrc-udon-networking-rules
 description: VRChat UdonSharp で Sync、Ownership、Network Event、Late Joiner、Player Data、Player Object を扱う設計や `docs/NETWORKING_RULES.md` の整備が必要なときに使う。Persistence を含むネットワーク仕様を project-owned に明文化したい場合にも使う。保存方式の選定そのものは `vrc-udon-persistence-sync` に分ける。
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 name: vrc-udon-knowhow-transfer
 description: Skill 外で import/ export フォルダを使ってノウハウを受け渡す運用を行うプロジェクトで使う。外部参照の取り込み、配布用 know-how の書き出し、どの情報を project-owned へ翻訳するかを決めたい場合に使う。
 ---

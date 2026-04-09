@@ -1,4 +1,4 @@
-﻿---
+---
 name: vrc-udon-persistence-sync
 description: VRChat UdonSharp で local state、synced state、Player Data、Player Object、Persistence のどれを使うか判断するときに使う。保存単位、復元順、キー設計、同期と保存の責務分離を明示したい場合に使う。ネットワーク全体ルールの固定は `vrc-udon-networking-rules` に分ける。
 ---

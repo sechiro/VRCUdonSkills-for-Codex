@@ -1,4 +1,4 @@
-﻿---
+---
 name: vrc-udon-fukuro-udon
 description: Fukuro Udon を導入している VRChat UdonSharp プロジェクトで使う。特に指定がない場合に、VRC Object Sync の代わりに Manual Sync を優先し、PickupPlatformOverride による VR 向け Pickup 上書き設定を使う前提を適用したいときに使う。通常案件では使わない。
 ---

@@ -1,4 +1,4 @@
-﻿---
+---
 name: vrc-udon-data-lists
 description: VRChat UdonSharp で DataList、Data Lists、Data Containers を明示的に使うよう求められたときだけ使う。配列より DataList を選ぶ理由、利用範囲、更新方針、代替不可な事情を整理したい場合に使う。
 ---
