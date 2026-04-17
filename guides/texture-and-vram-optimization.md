@@ -47,40 +47,32 @@ Unity 公式で確認できること:
 
 ## 基本判断
 
-### バンドル内画像を使う場合の優先順
+### 画像の持ち方を決めるときの優先順
 
-1. プラットフォーム別圧縮を入れる
-2. `Read/Write Enabled` を切る
-3. UI 用画像のミップマップを見直す
-4. それでも重いときだけ解像度や表現方式を見直す
-
-補足:
-
-- atlas による Material 数削減や描画負荷の整理は、この公開版には含めていない
-
-### 動的画像を使う場合の優先順
-
-1. 本当に実行時更新が必要か確認する
-2. `VRCImageDownloader` の制約を確認する
-3. `Dispose()` を前提に寿命管理を設計する
-4. 固定コンテンツならバンドル内テクスチャへ戻せないか再確認する
+1. まず、解像度や表現方式を見直して、本当にその表示品質が必要か確認する
+2. 固定コンテンツでよいなら、バンドル内テクスチャを優先する
+3. バンドル内テクスチャを使う場合は、プラットフォーム別圧縮、`Read/Write Enabled`、ミップマップ設定を見直す
+4. 実行時更新が必要な場合だけ `VRCImageDownloader` を検討し、解像度上限、レート制限、`Dispose()` を前提に設計する
 
 ## Texture Importer の基本方針
 
 ### 共通
 
-- `Read/Write Enabled`: `OFF`
+- `Read/Write Enabled` は、特別な理由がなければデフォルトの `OFF` のままでよい
 - 不要な alpha は持たせない
 - `Max Texture Size` は必要十分にとどめる
-- PC と Android で override を分ける
+- 問題がなければ `Automatic` を基本にし、個別に最適化したい場合だけ PC / Android の override を使う
 
 Unity 公式で確認できること:
 
 - Texture Import Settings は `Read/Write` を有効にすると、スクリプトアクセス用のコピーを内部に持つため Texture に必要なメモリが倍増すると説明している
-- Texture Import Settings は `Max Size` を超えると import 時にスケールされる前提で扱う
-- Platform-specific overrides は Windows 系で DXT1 / DXT5 / BC7、Android 系で ETC / ETC2 / ASTC 系を切り替えられる前提を持つ
+- Texture Import Settings は `Max Size` を超えると、import 時にその上限に収まるよう縮小される前提で扱う
+- Platform-specific overrides を使うと、Windows 系では DXT1 / DXT5 / BC7、Android 系では ETC / ETC2 / ASTC 系など画像の圧縮方法を個別に選べる
+- Unity の `Automatic` はプラットフォームに応じて適切な形式を自動選択するため、まずはそれで問題ないかを見る運用ができる
 
 ### 推奨の出発点
+
+まずは `Automatic` で確認し、品質や容量を個別に詰めたい場合だけ override を明示する。
 
 | 用途 | PC | Android / Quest | 備考 |
 |---|---|---|---|
@@ -242,6 +234,12 @@ Unity 公式で確認できること:
 
 - Unity Manual は Crunch を disk space 重視の手段として位置づけ、runtime memory usage には効かないと明記している
 
+VRChat 公式で確認できること:
+
+- VRChat の Android Content Optimization は、Crunch compression は in-memory size には効かず、download size にだけ効くと明記している
+- 同ページは、Android 向けコンテンツサイズは Crunch なしでも上限内に収めるべきとしている
+- また、Unity の新しいバージョンで互換性のない Crunch が使われると、後で不具合が出る場合がある点にも注意を促している
+
 採用判断:
 
 - 初回ダウンロード待ち時間を削りたいときは有効
@@ -290,6 +288,15 @@ Unity 公式で確認できること:
 - 同程度の見た目を圧縮 texture で持てる場合、PC では `DXT5 / BC3 / BC7`、Quest では `ASTC 6x6` の方が VRAM をかなり抑えやすい
 - そのため、`VRCImageDownloader` は「配布バンドルを軽くできる」一方で、「ゲーム内 VRAM 効率は良くない」というトレードオフで扱う
 
+補足:
+
+- alpha なし画像を `VRCImageDownloader` で 1 枚ずつ読み込み、前の画像をそのつど適切に `Dispose()` する運用なら、同解像度の画像をすべてバンドル内 `DXT1` で常時保持する場合より、ゲーム内 VRAM 使用量が小さくなる場合がある
+- たとえば `1920 x 1080` では、`RGB24` の 1 枚は約 `5.9 MB`、`DXT1` の 1 枚は約 `1.0 MB` なので、7 枚をすべて `DXT1` で保持すると約 `7 MB` になる
+- このため、「常に 1 枚だけ保持する `RGB24`」と「7 枚以上を同時保持する `DXT1`」の比較では、前者の方が小さくなることがある
+- ただしこれは、同時保持しないこと、前画像を確実に `Dispose()` すること、表示切り替え時の一時的な重なりを小さくできることが前提
+- また、`Dispose()` した画像を再表示したい場合は通常は再ダウンロードが必要になるため、切り替えのたびにネットワーク負荷が上がりやすい
+- また、バンドル内 texture 側は VRChat の mipmap streaming により実ゲーム中の使用量が下がる場合があるため、常に単純比較どおりになるとは限らない
+
 ### 扱いの注意
 
 - ダウンロード画像は GPU 圧縮前提で設計しない
@@ -308,7 +315,7 @@ Unity 公式で確認できること:
 
 ## 公開ガイドとしての扱い
 
-- このガイドは、画像表示ギミックの VRAM / 配布データ量最適化を外部公開向けに一般化したもの
+- このガイドは、画像表示ギミックの VRAM / ダウンロードデータ量最適化を外部公開向けに一般化したもの
 - 個別案件では、採用フォーマット、解像度、例外条件を project-owned 文書へ明記する
 - atlas による Material 削減や描画負荷の話は、この公開版には含めていない
 
@@ -328,6 +335,8 @@ Unity 公式で確認できること:
   - `https://creators.vrchat.com/avatars/avatar-performance-ranking-system`
 - VRChat Creation: Release 3.7.5
   - `https://creators.vrchat.com/releases/release-3-7-5/`
+- VRChat Creation: Android Content Optimization
+  - `https://creators.vrchat.com/platforms/android/quest-content-optimization`
 - Unity Manual: Texture compression formats
   - `https://docs.unity3d.com/2022.3/Documentation/Manual/class-TextureImporterOverride.html`
 - Unity Manual: Texture Import Settings
